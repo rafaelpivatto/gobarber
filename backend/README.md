@@ -50,4 +50,4 @@ yarn dev:server
 
 #### 🎉 Many Thanks
 
-Many thanks to [Rockeseat 🚀](https://rocketseat.com.br/) for this incredible journey, teaching very well and share many utils things for us.
+Many thanks to [Rockeseat 🚀](https://rocketseat.com.br/) for this incredible journey, teaching very well and shared many utils things for us.
