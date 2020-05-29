@@ -48,7 +48,7 @@ describe('CreateAppointment', () => {
         user_id: 'user-id',
         provider_id: 'provider-id',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('This appointment is already booked.'));
   });
 
   it('should not be able to create an appointment on a past date', async () => {
@@ -62,7 +62,9 @@ describe('CreateAppointment', () => {
         user_id: 'user-id',
         provider_id: 'provider-id',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError("You can't create an appointment on a past date."),
+    );
   });
 
   it('should not be able to create an appointment with same user as provider', async () => {
@@ -76,7 +78,9 @@ describe('CreateAppointment', () => {
         user_id: 'user-id',
         provider_id: 'user-id',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError("You can't create an appointment with yourself."),
+    );
   });
 
   it('should not be able to create an appointment before 8am and after 5pm', async () => {
@@ -90,7 +94,9 @@ describe('CreateAppointment', () => {
         user_id: 'user-id',
         provider_id: 'provider-id',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError('You can only create an appointments between 8am and 5pm.'),
+    );
 
     await expect(
       createAppointment.execute({
