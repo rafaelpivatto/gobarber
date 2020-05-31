@@ -43,7 +43,9 @@ describe('CreateUser', () => {
         email: 'johndoe@example.com',
         password: '123456',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError('Incorrect email/password combination.', 401),
+    );
   });
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -58,6 +60,8 @@ describe('CreateUser', () => {
         email: 'johndoe@example.com',
         password: 'worng-password',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError('Incorrect email/password combination.', 401),
+    );
   });
 });

@@ -43,7 +43,7 @@ describe('UpdateProfile', () => {
         name: 'John Doe',
         email: 'johndoe@example.com',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('User not found.'));
   });
 
   it('should not be able to change the email to another user email', async () => {
@@ -65,7 +65,7 @@ describe('UpdateProfile', () => {
         name: 'John Doe',
         email: 'johndoe@example.com',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('E-mail already in use.'));
   });
 
   it('should be able to update the password', async () => {
@@ -100,7 +100,9 @@ describe('UpdateProfile', () => {
         email: 'johntre@example.com',
         password: '123123',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError('You need to inform old password to set a new password.'),
+    );
   });
 
   it('should not be able to update the password with wrong password', async () => {
@@ -118,6 +120,6 @@ describe('UpdateProfile', () => {
         old_password: 'wrong-old-password',
         password: '123123',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('Old password dos not match.'));
   });
 });

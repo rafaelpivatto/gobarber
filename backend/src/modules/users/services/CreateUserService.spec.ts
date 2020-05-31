@@ -41,6 +41,6 @@ describe('CreateUser', () => {
         email: 'johndoe@example.com',
         password: '123456',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('Email address already used'));
   });
 });

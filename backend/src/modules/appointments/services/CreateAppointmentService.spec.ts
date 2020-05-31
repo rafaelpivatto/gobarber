@@ -104,6 +104,8 @@ describe('CreateAppointment', () => {
         user_id: 'user-id',
         provider_id: 'provider-id',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError('You can only create an appointments between 8am and 5pm.'),
+    );
   });
 });

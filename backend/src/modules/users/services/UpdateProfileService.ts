@@ -48,7 +48,7 @@ class UpdateProfileService {
 
     if (password && !old_password) {
       throw new AppError(
-        'You nedd to inform old password to sei a new password.',
+        'You need to inform old password to set a new password.',
       );
     }
 

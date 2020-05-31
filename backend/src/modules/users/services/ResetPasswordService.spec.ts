@@ -41,12 +41,12 @@ describe('ResetPasswordService', () => {
   });
 
   it('should not be able to reset the password with non-existing token', async () => {
-    expect(
+    await expect(
       resetPassword.execute({
         token: 'non-existing-token',
         password: '123123',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('User token does not exists'));
   });
 
   it('should not be able to reset the password with non-existing user', async () => {
@@ -54,12 +54,12 @@ describe('ResetPasswordService', () => {
       'non-existing-user',
     );
 
-    expect(
+    await expect(
       resetPassword.execute({
         token,
         password: '123123',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('User does not exists'));
   });
 
   it('should not be able to reset the password if passed more than 2 hours', async () => {
@@ -79,6 +79,6 @@ describe('ResetPasswordService', () => {
 
     await expect(
       resetPassword.execute({ token, password: '123123' }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('Token expired'));
   });
 });

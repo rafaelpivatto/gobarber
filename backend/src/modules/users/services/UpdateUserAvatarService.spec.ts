@@ -39,7 +39,9 @@ describe('UpdateUserAvatar', () => {
         user_id: 'non-existing-user',
         avatarFilename: 'avatar.jpg',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(
+      new AppError('Only authenticated users can change avatar.', 401),
+    );
   });
 
   it('should delete old avatar when updating new one', async () => {

@@ -44,7 +44,7 @@ describe('SendForgotPasswordEmail', () => {
       sendForgotPasswordEmail.execute({
         email: 'johndoe@example.com',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('User does not exists.'));
   });
 
   it('should generate a forgot password token', async () => {

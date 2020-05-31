@@ -33,6 +33,6 @@ describe('UpdateProfile', () => {
       showProfile.execute({
         user_id: 'non-existing-user',
       }),
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError('User not found.'));
   });
 });
