@@ -1,15 +1,20 @@
 import AppError from '@shared/errors/AppError';
+
+import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
 import FakeAppointmentsRespository from '../repositories/fakes/FakeAppointmentsRespository';
 import CreateAppointmentService from './CreateAppointmentService';
 
+let fakeNotificationsRepository: FakeNotificationsRepository;
 let fakeAppointmentsRespository: FakeAppointmentsRespository;
 let createAppointment: CreateAppointmentService;
 
 describe('CreateAppointment', () => {
   beforeEach(() => {
+    fakeNotificationsRepository = new FakeNotificationsRepository();
     fakeAppointmentsRespository = new FakeAppointmentsRespository();
     createAppointment = new CreateAppointmentService(
       fakeAppointmentsRespository,
+      fakeNotificationsRepository,
     );
   });
 
@@ -17,6 +22,10 @@ describe('CreateAppointment', () => {
     jest.spyOn(Date, 'now').mockImplementation(() => {
       return new Date(2020, 4, 10, 12).getTime();
     });
+    const createNotification = jest.spyOn(
+      fakeNotificationsRepository,
+      'create',
+    );
 
     const appointment = await createAppointment.execute({
       date: new Date(2020, 4, 10, 13),
@@ -27,6 +36,10 @@ describe('CreateAppointment', () => {
     expect(appointment).toHaveProperty('id');
     expect(appointment.user_id).toBe('user-id');
     expect(appointment.provider_id).toBe('provider-id');
+    expect(createNotification).toHaveBeenCalledWith({
+      recipient_id: appointment.provider_id,
+      content: 'Novo agendamento para dia 10/05/2020 às 13:00h',
+    });
   });
 
   it('should not be able to create two appointment on the same time', async () => {
