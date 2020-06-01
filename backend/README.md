@@ -22,7 +22,9 @@ docker run --name gostack_postgres -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=
 docker run --name gostack_mongo -p 27017:27017 -d -t mongo
 ```
 
-### 🚀 To :
+### 🚀 To run:
+
+> 📌 See [.env.example](https://github.com/rafaelpivatto/gobarber/blob/master/backend/.env.example) to set some environment variables before start backend server
 
 ```bash
 # Install node dependencies
@@ -33,6 +35,8 @@ yarn typeorm migration:run
 
 # Start in development mode
 yarn dev:server
+
+# 🚀 Server started on port 3333!
 ```
 
 ### 🧪 Run tests:
