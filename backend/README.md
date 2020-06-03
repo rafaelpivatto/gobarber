@@ -20,6 +20,9 @@ docker run --name gostack_postgres -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=
 
 # Mongo
 docker run --name gostack_mongo -p 27017:27017 -d -t mongo
+
+# Redis
+docker run --name gostack_redis -p 6379:6379 -d -t redis:alpine
 ```
 
 ### 🚀 To run:
