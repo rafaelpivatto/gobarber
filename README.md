@@ -16,7 +16,7 @@
 
 [See the backend module readme](https://github.com/rafaelpivatto/gobarber/tree/master/backend#gobarber)
 
-### ⚙️ To run back-end
+### 🖥 To run front-end
 
 [See the frontend module readme](https://github.com/rafaelpivatto/gobarber/tree/master/frontend#gobarber)
 
