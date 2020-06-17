@@ -16,6 +16,10 @@
 
 [See the backend module readme](https://github.com/rafaelpivatto/gobarber/tree/master/backend#gobarber)
 
+### ⚙️ To run back-end
+
+[See the frontend module readme](https://github.com/rafaelpivatto/gobarber/tree/master/frontend#gobarber)
+
 #### 🎉 Many Thanks
 
 Many thanks to [Rockeseat 🚀](https://rocketseat.com.br/) for this incredible journey, teaching very well and share many utils things for us.
