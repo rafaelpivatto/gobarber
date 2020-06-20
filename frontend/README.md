@@ -11,7 +11,6 @@
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscod)
 - [My VSCode settings.json](https://gist.github.com/rafaelpivatto/b4d77ca681941d68ceed6f1c7ca12c3f)
 
-
 ### 🚀 To run:
 
 ```bash
@@ -23,6 +22,12 @@ yarn start
 
 # 🚀 Server started on port 5000!
 ```
+
+### 🤓 Dev support stuffs...
+
+| Command                                               | Description               |
+| ----------------------------------------------------- | ------------------------- |
+| npx create-react-app <app-name> --template=typescript | To create a new react app |
 
 #### 🎉 Many Thanks
 
