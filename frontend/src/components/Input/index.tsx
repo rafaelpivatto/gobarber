@@ -14,7 +14,7 @@ import { Container, Error } from './styles';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   containerStyle?: object;
-  icon: React.ComponentType<IconBaseProps>;
+  icon?: React.ComponentType<IconBaseProps>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
     setIsFocused(true);
   }, []);
 
-  const handleInputBlue = useCallback(() => {
+  const handleInputBlur = useCallback(() => {
     setIsFocused(false);
     setIsFilled(!!inputRef.current?.value);
   }, []);
@@ -51,11 +51,12 @@ const Input: React.FC<InputProps> = ({
       isErrored={!!error}
       isFocused={isFocused}
       isFilled={isFilled}
+      data-testid="input-container"
     >
       {Icon && <Icon size={20} />}
       <input
         onFocus={handleInputFocus}
-        onBlur={handleInputBlue}
+        onBlur={handleInputBlur}
         ref={inputRef}
         defaultValue={defaultValue}
         {...rest}
