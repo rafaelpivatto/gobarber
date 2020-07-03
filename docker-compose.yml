@@ -1,0 +1,74 @@
+version: '3.7'
+
+networks:
+  gobarber:
+
+volumes:
+  pgdata:
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - gobarber
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - '6379:6379'
+    networks:
+      - gobarber
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    networks:
+      - gobarber
+
+  backend:
+    image: node:12-alpine
+    container_name: backend
+    environment:
+      REDIS_HOST: host.docker.internal
+      POSTGRES_HOST: host.docker.internal
+      MONGO_HOST: host.docker.internal
+    depends_on:
+      - postgres
+      - redis
+      - mongo
+    ports:
+      - '3333:3333'
+    volumes:
+      - ./backend:/usr/app/backend
+      - /usr/app/backend/node_modules/
+    working_dir: /usr/app/backend
+    command: yarn run docker-dev
+    networks:
+      - gobarber
+
+  frontend:
+    image: node:12-alpine
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/usr/app/frontend
+      - /usr/app/frontend/node_modules/
+    working_dir: /usr/app/frontend
+    command: yarn run docker-dev
+    networks:
+      - gobarber

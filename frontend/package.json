@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-dev": "yarn && react-scripts start"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

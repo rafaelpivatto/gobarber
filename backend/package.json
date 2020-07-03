@@ -9,7 +9,8 @@
     "start": "ts-node src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest",
-    "clear": "jest --clearCache"
+    "clear": "jest --clearCache",
+    "docker-dev": "yarn && yarn typeorm migration:run && ts-node-dev -r tsconfig-paths/register --inspect --transpileOnly --ignore-watch node_modules src/shared/infra/http/server.ts"
   },
   "dependencies": {
     "aws-sdk": "^2.686.0",

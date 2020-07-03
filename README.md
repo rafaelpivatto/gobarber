@@ -12,15 +12,27 @@
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscod)
 - [My VSCode settings.json](https://gist.github.com/rafaelpivatto/b4d77ca681941d68ceed6f1c7ca12c3f)
 
-### ⚙️ To run back-end
+## 🐳 To run backend and frontend in dev mode [docker]:
+
+```bash
+# Running all containers
+docker-compose up
+
+# or detached mode
+docker-compose up -d
+```
+
+## 🗂 To run separate modules:
+
+### ⚙️ Backend
 
 [See the backend module readme](https://github.com/rafaelpivatto/gobarber/tree/master/backend#gobarber)
 
-### 🖥 To run front-end
+### 🖥 Frontend
 
 [See the frontend module readme](https://github.com/rafaelpivatto/gobarber/tree/master/frontend#gobarber)
 
-### 📱 To run app mobile
+### 📱 App mobile (iOS/Android)
 
 [See the app mobile module readme](https://github.com/rafaelpivatto/gobarber/tree/master/appgobarber#gobarber)
 
